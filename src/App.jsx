@@ -320,8 +320,13 @@ function Navbar({ menuOpen, setMenuOpen }) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-100 bg-white/95 text-navy shadow-sm backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#home" onClick={closeMenu} className="flex items-center text-navy">
-          <AcademyLogo />
+        <a href="#home" onClick={closeMenu} className="flex min-w-0 items-center text-navy">
+          <span className="sm:hidden">
+            <AcademyLogo compact />
+          </span>
+          <span className="hidden sm:block">
+            <AcademyLogo />
+          </span>
         </a>
 
         <div className="hidden items-center gap-1 xl:flex">
@@ -359,15 +364,16 @@ function Navbar({ menuOpen, setMenuOpen }) {
         <button
           type="button"
           aria-label="Open menu"
-          onClick={() => setMenuOpen(true)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-navy xl:hidden"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-navy xl:hidden"
         >
-          <Menu />
+          {menuOpen ? <X /> : <Menu />}
         </button>
       </nav>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-navy-dark/95 px-4 py-4 text-white backdrop-blur-xl xl:hidden">
+        <div className="fixed inset-0 z-[999] h-dvh overflow-y-auto bg-navy-dark/95 px-4 py-4 text-white backdrop-blur-xl xl:hidden">
           <div className="flex items-center justify-between">
             <AcademyLogo compact />
             <button
@@ -386,7 +392,7 @@ function Navbar({ menuOpen, setMenuOpen }) {
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className="rounded-2xl bg-white/10 px-5 py-4 text-lg font-black transition hover:bg-gold hover:text-navy"
+                className="rounded-2xl bg-white/10 px-5 py-4 text-lg font-black transition active:bg-gold active:text-navy hover:bg-gold hover:text-navy"
               >
                 {link.label}
               </a>
@@ -396,6 +402,7 @@ function Navbar({ menuOpen, setMenuOpen }) {
           <div className="mt-8 grid grid-cols-2 gap-3">
             <a
               href={`tel:${academy.phonePrimary}`}
+              onClick={closeMenu}
               className="rounded-2xl bg-white px-4 py-3 text-center text-sm font-black text-navy"
             >
               Call Now
