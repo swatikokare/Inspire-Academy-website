@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #071833;
+  background: #fffaf0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.academic-grid {
+  background-image:
+    linear-gradient(rgba(8, 39, 95, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 39, 95, 0.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.soft-noise {
+  background-image:
+    radial-gradient(circle at top left, rgba(245, 181, 27, 0.14), transparent 34rem),
+    radial-gradient(circle at bottom right, rgba(8, 39, 95, 0.08), transparent 28rem);
+}
+
+.learning-rays {
+  background-image:
+    repeating-conic-gradient(from 0deg at 18% 30%, rgba(255, 255, 255, 0.22) 0deg 5deg, transparent 5deg 14deg),
+    repeating-conic-gradient(from 24deg at 82% 74%, rgba(255, 255, 255, 0.18) 0deg 4deg, transparent 4deg 16deg);
+}
